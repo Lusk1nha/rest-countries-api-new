@@ -1,13 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { Navbar } from "./components/Navbar";
-import GlobalStyles from "./styles/globalStyles";
-import { base, light, dark } from "./styles/themes";
+import { Fragment, useState } from "react";
 
-const themesMap: any = {
-  light,
-  dark
-};
+import styled from "styled-components";
+
+import { Navbar } from "./components/Navbar";
+
+import GlobalStyles from "./styles/globalStyles";
+import { ThemeContextProvider } from "./contexts/theme/ThemeContextProvider";
 
 const StyledApp = styled.div`
   width: 100%;
@@ -16,17 +14,15 @@ const StyledApp = styled.div`
 `;
 
 export default function App() {
-  const [currentTheme, setCurrentTheme] = useState<string>('light');
-  const theme = { ...base, colors: themesMap[currentTheme] };
-
   return (
     <Fragment>
-      <ThemeProvider theme={theme}>
+      <ThemeContextProvider>
         <GlobalStyles />
+
         <StyledApp>
-          <Navbar theme={currentTheme} setTheme={setCurrentTheme} />
+          <Navbar />
         </StyledApp>
-      </ThemeProvider >
+      </ThemeContextProvider>
     </Fragment>
   );
 }
