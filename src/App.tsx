@@ -1,5 +1,6 @@
 import { Fragment, useEffect, useState } from "react";
 import styled, { ThemeProvider } from "styled-components";
+import { Navbar } from "./components/Navbar";
 import GlobalStyles from "./styles/globalStyles";
 import { base, light, dark } from "./styles/themes";
 
@@ -15,23 +16,15 @@ const StyledApp = styled.div`
 `;
 
 export default function App() {
-  const [currentTheme, setCurrentTheme] = useState<string>('dark');
+  const [currentTheme, setCurrentTheme] = useState<string>('light');
   const theme = { ...base, colors: themesMap[currentTheme] };
-
-  const handleAppThemeChanging = () => {
-    setCurrentTheme(
-      currentTheme == 'light'
-      ? 'dark'
-      : 'light'
-    );
-  };
 
   return (
     <Fragment>
       <ThemeProvider theme={theme}>
         <GlobalStyles />
         <StyledApp>
-          
+          <Navbar theme={currentTheme} setTheme={setCurrentTheme} />
         </StyledApp>
       </ThemeProvider >
     </Fragment>
