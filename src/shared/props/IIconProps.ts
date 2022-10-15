@@ -1,5 +1,6 @@
 export interface IIconProps {
-   w?: string;
-   h?: string;
-   pathColor?: string;
+  w?: string;
+  h?: string;
+  iconColor?: string;
+  pathColor?: string;
 }
