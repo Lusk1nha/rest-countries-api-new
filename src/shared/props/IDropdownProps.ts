@@ -8,5 +8,8 @@ export interface IDropdownProps {
   disabled?: boolean;
   options: IDropdownOptionsProps[];
   label?: string;
+  defaultValue?: string;
+  placeholder?: string;
+  storeFunction: (value: string | null) => void;
 };
 

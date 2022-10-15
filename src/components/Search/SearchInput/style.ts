@@ -42,13 +42,14 @@ export const Input = styled.input.attrs(props => ({
   width: 100%;
 
   color: ${props => props.theme.colors.textColor};
-  font-size: 0.813rem;
+  font-size: 0.85rem;
 
   border: 0;
   outline: 0;
 
   &::placeholder {
     color: ${props => props.theme.colors.textColor};
+    user-select: none;
   }
 `;
 

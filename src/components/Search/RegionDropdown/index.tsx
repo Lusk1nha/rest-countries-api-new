@@ -1,7 +1,8 @@
 import { FormEvent, useState } from "react";
+import { IRegionDropdownProps } from "../../../shared/props/IRegionDropdownProps";
 import { IRegionDropdownState } from "../../../shared/states/IRegionDropdownState";
 import { Dropdown } from "../../Dropdown";
-import { Container, SelectContainer, OptionContainer, OptionPlaceholder } from "./style";
+import { Container } from "./style";
 
 const DEFAULT_OPTIONS: IRegionDropdownState[] = [
   { value: 'Africa', text: 'Africa' },
@@ -11,35 +12,14 @@ const DEFAULT_OPTIONS: IRegionDropdownState[] = [
   { value: 'Oceania', text: 'Oceania' },
 ]
 
-export function RegionDropdown() {
-  const [selected, setSelected] = useState<string | number | null>(null);
-
-  const handleRegionChange = (event: FormEvent<HTMLSelectElement>) => {
-    const value = event.currentTarget.value;
-
-    if (value != selected) {
-      console.log('Region: ', value)
-      setSelected(
-        value
-      );
-    };
+export function RegionDropdown({ setRegion }: IRegionDropdownProps) {
+  const handleRegionChange = (value: string | null) => {
+    setRegion(value);
   };
 
   return (
     <Container>
-      <Dropdown options={DEFAULT_OPTIONS} label="Teste" />
-      {/* <SelectContainer onChange={handleRegionChange} defaultValue="">
-        <OptionPlaceholder>
-          Filter by Region
-        </OptionPlaceholder>
-        {options.map((option, key) => {
-          return (
-            <OptionContainer value={option.value} key={key}>
-              {option.text}
-            </OptionContainer>
-          )
-        })}
-      </SelectContainer> */}
+      <Dropdown options={DEFAULT_OPTIONS} placeholder="Filter by Region" storeFunction={handleRegionChange} />
     </Container>
   );
 }

@@ -1,30 +1,59 @@
-import { useState } from "react";
+import { useState, MouseEvent, useEffect } from "react";
 import { IDropdownProps } from "../../shared/props/IDropdownProps";
-import { IDropdownState } from "../../shared/states/IDropdownState";
-import { Container, Label, OptionsContainer, SelectContainer } from "./style";
+import { Container, Label, OptionsContainer, SelectContainer, SelectPlaceholder, Option, SelectWrapper, StyledArrowIcon } from "./style";
 
 
 export function Dropdown(props: IDropdownProps) {
-  const [currentValue, setCurrentValue] = useState<string | null>(null);
+  const [currentValue, setCurrentValue] = useState<string | null>(props.defaultValue ?? null);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    props.storeFunction(currentValue)
+  }, [currentValue])
+
+  const handleDropdownOpenClick = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    setIsOpen(!isOpen);
+  };
+
+  const handleOptionClick = (event: MouseEvent<HTMLLIElement>, value: any) => {
+    event.preventDefault();
+    setCurrentValue(value);
+  };
+
+  const renderOptions = () => {
+    return props.options != null ? props.options.map(({ value, text }, id) => {
+      const isActualOption = value === currentValue;
+
+      return (
+        <Option value={value} key={id} active={isActualOption} onClick={(e) => handleOptionClick(e, value)}>
+          {text}
+        </Option>
+      );
+    }) : null
+  };
+
   return (
-    <Container maxWidth={"50px"}>
+    <Container disabled={props.disabled} onClick={handleDropdownOpenClick}>
       {props.label != null && <Label>{props.label}</Label>}
 
       <SelectContainer>
-        Teste
-      </SelectContainer>
+        <SelectWrapper>
+          <SelectPlaceholder>
+            {currentValue ?? props.placeholder}
+          </SelectPlaceholder>
 
-      <OptionsContainer>
+          <StyledArrowIcon w="14px" h="14px" />
+        </SelectWrapper>
+
         {isOpen && (
-          props.options.map((option, key) => {
-            return (
-              <div key={key}>{option.text}</div>
-            )
-          })
+          <OptionsContainer>
+            {renderOptions()}
+          </OptionsContainer>
         )}
-      </OptionsContainer>
+      </SelectContainer>
     </Container>
   );
 };

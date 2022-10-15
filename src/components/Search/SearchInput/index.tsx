@@ -1,10 +1,13 @@
-import { FormEvent, useState } from "react";
-import { MagnifyingGlassIcon } from "../../Icons/MagnifyingGlassIcon";
+import { FormEvent, useEffect, useState } from "react";
 import { Container, IconContainer, Input, StyledMagnifyingGlassIcon } from "./style";
+import { ISearchInputProps } from '../../../shared/props/ISearchInputProps';
 
-export function SearchInput() {
+export function SearchInput({ setSearch }: ISearchInputProps) {
   const [value, setValue] = useState<string>('')
 
+  useEffect(() => {
+    setSearch(value);
+  }, [value]);
 
   /**
    * Method to handle search input change.
