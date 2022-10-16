@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react";
-import { Container, IconContainer, Input, StyledMagnifyingGlassIcon } from "./style";
+import { Container, IconContainer, Input, StyledMagnifyingGlassIcon, MagnifyingGlassIconContainer } from "./style";
 import { ISearchInputProps } from '../../../shared/props/ISearchInputProps';
 
 export function SearchInput({ setSearch }: ISearchInputProps) {
@@ -27,7 +27,9 @@ export function SearchInput({ setSearch }: ISearchInputProps) {
   return (
     <Container>
       <IconContainer>
-        <StyledMagnifyingGlassIcon w="18px" h="18px" />
+        <MagnifyingGlassIconContainer>
+          <StyledMagnifyingGlassIcon />
+        </MagnifyingGlassIconContainer>
       </IconContainer>
 
       <Input value={value} onChange={handleSearchChange} />

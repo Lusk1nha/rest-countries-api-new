@@ -2,7 +2,7 @@ import { Icon } from "../Icon";
 import { IIconProps } from "../../../shared/props/IIconProps";
 
 export const MoonIcon = (props: IIconProps) => (
-   <Icon enable-background="new 0 0 18 16" width={props.w} height={props.h} viewBox="0 0 18 16" xmlSpace="preserve">
+   <Icon enable-background="new 0 0 18 16" width="100%" height="100%" viewBox="-7 0 24 16" xmlSpace="preserve">
       <path fill={props.pathColor} d="m8.081 1.893c0.338 -0.106 0.637 0.246 0.477 0.562 -0.365 0.721 -0.557 1.519 -0.557 2.345 0 2.872 2.328 5.2 5.2 5.2 0.826 0 1.624 -0.193 2.345 -0.557 0.316 -0.16 0.668 0.139 0.562 0.477 -0.831 2.646 -3.291 4.481 -6.107 4.481 -3.535 0 -6.4 -2.865 -6.4 -6.4 0 -2.816 1.835 -5.276 4.481 -6.107zm-3.681 6.107c0 3.093 2.507 5.6 5.6 5.6 2.151 0 4.065 -1.224 5 -3.075 -0.576 0.181 -1.182 0.275 -1.8 0.275 -3.314 0 -6 -2.686 -6 -6 0 -0.619 0.094 -1.224 0.275 -1.8 -1.851 0.935 -3.075 2.849 -3.075 5z" />
    </Icon>
 );

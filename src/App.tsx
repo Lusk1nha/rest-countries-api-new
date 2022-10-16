@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import styled from "styled-components";
@@ -12,7 +12,6 @@ import { Detail } from "./pages/Detail";
 
 const StyledApp = styled.div`
   width: 100%;
-  height: 100vh;
   background: ${props => props.theme.colors.bgColor};
 `;
 

@@ -9,4 +9,6 @@ export const Container = styled.form`
   align-items: flex-start;
   justify-content: center;
   row-gap: 2.5rem;
+
+  margin-bottom: 2.5rem;
 `;

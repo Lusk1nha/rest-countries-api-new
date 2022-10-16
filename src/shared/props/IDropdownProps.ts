@@ -1,6 +1,6 @@
 export declare interface IDropdownOptionsProps {
-  value: string | number;
-  text: string;
+  value: string | null;
+  text: string | null;
 };
 
 export interface IDropdownProps {

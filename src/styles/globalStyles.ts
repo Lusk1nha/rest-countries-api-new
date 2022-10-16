@@ -12,14 +12,9 @@ const GlobalStyle = createGlobalStyle`
     transition: 200ms linear background;
   }
 
-  body {
-    overflow: hidden;
-  }
-
-  #root {
+  #root, body {
     width: 100%;
-    min-height: 100vh;
-    height: 100%;
+    height: 100vh;
   }
 `;
 

@@ -1,12 +1,11 @@
-import { FormEvent, useState } from "react";
+import { IDropdownOptionsProps } from "../../../shared/props/IDropdownProps";
 import { IRegionDropdownProps } from "../../../shared/props/IRegionDropdownProps";
-import { IRegionDropdownState } from "../../../shared/states/IRegionDropdownState";
 import { Dropdown } from "../../Dropdown";
 import { Container } from "./style";
 
-const DEFAULT_OPTIONS: IRegionDropdownState[] = [
+const DEFAULT_OPTIONS: IDropdownOptionsProps[] = [
   { value: 'Africa', text: 'Africa' },
-  { value: 'America', text: 'America' },
+  { value: 'Americas', text: 'America' },
   { value: 'Asia', text: 'Asia' },
   { value: 'Europe', text: 'Europe' },
   { value: 'Oceania', text: 'Oceania' },

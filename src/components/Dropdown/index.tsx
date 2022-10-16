@@ -1,14 +1,17 @@
 import { useState, MouseEvent, useEffect } from "react";
-import { IDropdownProps } from "../../shared/props/IDropdownProps";
-import { Container, Label, OptionsContainer, SelectContainer, SelectPlaceholder, Option, SelectWrapper, StyledArrowIcon } from "./style";
+import { IDropdownProps, IDropdownOptionsProps } from "../../shared/props/IDropdownProps";
+import { Container, Label, ArrowIconContainer, OptionsContainer, SelectContainer, SelectPlaceholder, Option, SelectWrapper, StyledArrowIcon } from "./style";
 
 
 export function Dropdown(props: IDropdownProps) {
-  const [currentValue, setCurrentValue] = useState<string | null>(props.defaultValue ?? null);
+  const [currentValue, setCurrentValue] = useState<IDropdownOptionsProps | null>({
+    text: null,
+    value: null
+  });
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    props.storeFunction(currentValue)
+    props.storeFunction(currentValue?.value ?? null)
   }, [currentValue])
 
   const handleDropdownOpenClick = (event: MouseEvent<HTMLDivElement>) => {
@@ -18,18 +21,18 @@ export function Dropdown(props: IDropdownProps) {
     setIsOpen(!isOpen);
   };
 
-  const handleOptionClick = (event: MouseEvent<HTMLLIElement>, value: any) => {
+  const handleOptionClick = (event: MouseEvent<HTMLLIElement>, value: IDropdownOptionsProps) => {
     event.preventDefault();
     setCurrentValue(value);
   };
 
   const renderOptions = () => {
-    return props.options != null ? props.options.map(({ value, text }, id) => {
-      const isActualOption = value === currentValue;
+    return props.options != null ? props.options.map((option, id) => {
+      const isActualOption = option.value === currentValue?.value;
 
       return (
-        <Option value={value} key={id} active={isActualOption} onClick={(e) => handleOptionClick(e, value)}>
-          {text}
+        <Option value={option} key={id} active={isActualOption} onClick={(e) => handleOptionClick(e, option)}>
+          {option.text}
         </Option>
       );
     }) : null
@@ -42,10 +45,12 @@ export function Dropdown(props: IDropdownProps) {
       <SelectContainer>
         <SelectWrapper>
           <SelectPlaceholder>
-            {currentValue ?? props.placeholder}
+            {currentValue?.text ?? props.placeholder}
           </SelectPlaceholder>
 
-          <StyledArrowIcon w="14px" h="14px" />
+          <ArrowIconContainer>
+            <StyledArrowIcon />
+          </ArrowIconContainer>
         </SelectWrapper>
 
         {isOpen && (

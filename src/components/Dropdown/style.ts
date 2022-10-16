@@ -16,7 +16,7 @@ interface IStyleArrowIconProps {
 };
 
 export const Container = styled.section<IStyleDropdownProps>`
-  width: 50%;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ export const Label = styled.h3`
 export const SelectContainer = styled.div`
   background: ${props => props.theme.colors.elementsColor};
   width: 100%;
-  height: 48px;
+  min-height: 48px;
 
   position: relative;
 
@@ -49,7 +49,7 @@ export const SelectContainer = styled.div`
   box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
   border-radius: 0.313rem;
   
-  padding: 0 1.5rem 0 1.75rem;
+  padding: 0.3rem 1.2rem 0.3rem 1.75rem;
   
   border: 0;
   outline: 0;
@@ -77,11 +77,17 @@ export const SelectPlaceholder = styled.h4`
   user-select: none;
 `;
 
+export const ArrowIconContainer = styled.div`
+  width: 12px;
+  height: 15px;
+`;
+
 export const StyledArrowIcon = styled(DownArrowIcon).attrs<IStyleArrowIconProps>(props => ({
   fill: props.theme.colors.textColor,
   pathColor: props.theme.colors.textColor
 }))`
   fill: ${props => props.theme.colors.textColor};
+  font-weight: 800;
 `;
 
 export const OptionsContainer = styled.ul`

@@ -3,6 +3,7 @@ import { MagnifyingGlassIcon } from "../../Icons/MagnifyingGlassIcon";
 
 export const Container = styled.section`
   background: ${props => props.theme.colors.elementsColor};
+  max-width: 480px;
   width: 100%;
   height: 48px;
 
@@ -25,6 +26,11 @@ export const IconContainer = styled.div`
   justify-content: center;
 
   padding: 0 1rem;
+`;
+
+export const MagnifyingGlassIconContainer = styled.div`
+  width: 18px;
+  height: 18px;
 `;
 
 export const StyledMagnifyingGlassIcon = styled(MagnifyingGlassIcon).attrs(props => ({
