@@ -4,6 +4,7 @@ import { Dropdown } from "../../Dropdown";
 import { Container } from "./style";
 
 const DEFAULT_OPTIONS: IDropdownOptionsProps[] = [
+  { value: 'All', text: 'Show all regions' },
   { value: 'Africa', text: 'Africa' },
   { value: 'Americas', text: 'America' },
   { value: 'Asia', text: 'Asia' },

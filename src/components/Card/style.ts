@@ -18,6 +18,8 @@ export const Container = styled.article`
   overflow: hidden;
 
   transition: all 100ms;
+  transform: perspective(1px) translateZ(0);
+  backface-visibility: hidden;
 
   cursor: pointer;
 

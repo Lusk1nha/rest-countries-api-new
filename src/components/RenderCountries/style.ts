@@ -9,5 +9,5 @@ export const Container = styled.section`
   grid-template-columns: 1fr;
   grid-auto-rows: auto;
 
-  row-gap: 2.5rem;
+  gap: 2.5rem 1rem;
 `;

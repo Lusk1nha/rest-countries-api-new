@@ -27,6 +27,8 @@ export const Container = styled.section<IStyleDropdownProps>`
     opacity: '30%',
     pointerEvents: 'none'
   })}
+
+  z-index: 1;
 `;
 
 export const Label = styled.h3`
@@ -111,6 +113,8 @@ export const OptionsContainer = styled.ul`
   outline: 0;
   
   overflow: hidden;
+
+  z-index: 1;
 `;
 
 export const Option = styled.li<IStyleOptionProps>`
