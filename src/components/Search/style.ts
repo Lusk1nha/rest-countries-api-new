@@ -8,7 +8,13 @@ export const Container = styled.form`
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  row-gap: 2.5rem;
+  row-gap: 3rem;
 
-  margin-bottom: 2.5rem;
+  margin: 1.5rem 0 2.5rem;
+
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;

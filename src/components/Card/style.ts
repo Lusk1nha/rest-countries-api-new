@@ -23,8 +23,8 @@ export const Container = styled.article`
 
   cursor: pointer;
 
-  &:hover, &:focus {
-    transform: scale(1.03);
+  @media screen and (min-width: 900px) {
+    justify-self: flex-start;
   }
 `;
 

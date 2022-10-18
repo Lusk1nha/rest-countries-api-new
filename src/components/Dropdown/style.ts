@@ -48,7 +48,7 @@ export const SelectContainer = styled.div`
   
   color: ${props => props.theme.colors.textColor};
   
-  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.1);
   border-radius: 0.313rem;
   
   padding: 0.3rem 1.2rem 0.3rem 1.75rem;
@@ -97,7 +97,7 @@ export const OptionsContainer = styled.ul`
   width: 100%;
   height: auto;
 
-  box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.1);
   border-radius: 0.313rem;
 
   display: flex;

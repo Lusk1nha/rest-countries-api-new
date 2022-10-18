@@ -18,6 +18,7 @@ export const Container = styled.section`
   box-shadow: 0 0 0.3rem rgba(0, 0, 0, 0.1);
 
   overflow: hidden;
+
 `;
 
 export const IconContainer = styled.div`
@@ -31,6 +32,11 @@ export const IconContainer = styled.div`
 export const MagnifyingGlassIconContainer = styled.div`
   width: 18px;
   height: 18px;
+
+  @media screen and (min-width: 900px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const StyledMagnifyingGlassIcon = styled(MagnifyingGlassIcon).attrs(props => ({
@@ -48,7 +54,7 @@ export const Input = styled.input.attrs(props => ({
   width: 100%;
 
   color: ${props => props.theme.colors.textColor};
-  font-size: 0.85rem;
+  font-size: 0.875rem;
 
   border: 0;
   outline: 0;
