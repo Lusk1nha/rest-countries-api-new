@@ -2,7 +2,7 @@ import { IRenderCountriesProps } from "../../shared/props/IRenderCountriesProps"
 import { Card } from "../Card";
 import { Container } from "./style";
 
-export function RenderCountries({ countries, isLoading, totalCards }: IRenderCountriesProps) {
+export function RenderCountries({ countries }: IRenderCountriesProps) {
   const renderCountries = () => {
     return countries.map((country, id) => {
       return (
@@ -10,8 +10,7 @@ export function RenderCountries({ countries, isLoading, totalCards }: IRenderCou
       );
     });
   };
-    
-  console.log(countries, isLoading, totalCards)
+
   return (
     <Container>
       {renderCountries()}

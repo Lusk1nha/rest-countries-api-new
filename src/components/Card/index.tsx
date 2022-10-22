@@ -1,9 +1,17 @@
 import { ICountry } from "../../shared/props/ICountriesProps";
 import { Container, FlagImageContainer, FlagImage, Informations, Name, SubInformations, InformationLabel } from "./style";
+import { useNavigate } from 'react-router';
 
 export function Card(props: ICountry) {
+  const navigate = useNavigate();
+  
+  const handleClick = () => {
+    const newPath = `/details/${props.cca3.toLowerCase()}`
+    navigate(newPath);
+  };
+
   return(
-    <Container>
+    <Container onClick={handleClick}>
       <FlagImageContainer>
         <FlagImage src={props.flags.svg} alt={`Flag of ${props.name.common}`} title={props.name.common} />
       </FlagImageContainer>

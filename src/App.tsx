@@ -8,7 +8,7 @@ import { Navbar } from "./components/Navbar";
 import GlobalStyles from "./styles/globalStyles";
 import { ThemeContextProvider } from "./contexts/theme/ThemeContextProvider";
 import { HomePage } from "./pages/HomePage";
-import { Detail } from "./pages/Detail";
+import { Details } from "./pages/Details";
 
 const StyledApp = styled.div`
   background: ${props => props.theme.colors.bgColor};
@@ -27,13 +27,10 @@ export default function App() {
 
         <StyledApp>
           <Navbar />
-          
-          <BrowserRouter>
             <Routes>
-              <Route path="/" index element={<HomePage />} />
-              <Route path="detail" element={<Detail />} />
+              <Route path="/"  index element={<HomePage />} />
+              <Route path="details/:code" element={<Details />} />
             </Routes>
-          </BrowserRouter>
         </StyledApp>
       </ThemeContextProvider>
     </Fragment>

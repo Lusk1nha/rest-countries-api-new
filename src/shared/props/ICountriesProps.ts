@@ -1,5 +1,6 @@
 export interface ICountry {
   name: IName
+  borders?: string[]
   tld: string[]
   cca2: string
   ccn3: string
@@ -14,7 +15,7 @@ export interface ICountry {
   altSpellings: string[]
   region: string
   subregion: string
-  languages: ILanguages
+  languages: Object[]
   translations: ITranslations
   latlng: number[]
   landlocked: boolean
@@ -38,16 +39,7 @@ export interface ICountry {
 export interface IName {
   common: string
   official: string
-  nativeName: INativeName
-}
-
-export interface INativeName {
-  isl: IIsl
-}
-
-export interface IIsl {
-  official: string
-  common: string
+  nativeName: Object[]
 }
 
 export interface ICurrencies {
