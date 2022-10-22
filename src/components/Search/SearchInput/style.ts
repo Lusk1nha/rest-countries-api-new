@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { MagnifyingGlassIcon } from "../../Icons/MagnifyingGlassIcon";
 
-export const Container = styled.section`
+interface IContainerStyleProps {
+  disabled: boolean;
+};
+
+export const Container = styled.section<IContainerStyleProps>`
   background: ${props => props.theme.colors.elementsColor};
   max-width: 480px;
   width: 100%;
@@ -19,6 +23,10 @@ export const Container = styled.section`
 
   overflow: hidden;
 
+  ${props => props.disabled && css`
+    opacity: 60%;
+    pointer-events: none;
+  `}
 `;
 
 export const IconContainer = styled.div`

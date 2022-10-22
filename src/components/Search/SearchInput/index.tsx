@@ -2,7 +2,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Container, IconContainer, Input, StyledMagnifyingGlassIcon, MagnifyingGlassIconContainer } from "./style";
 import { ISearchInputProps } from '../../../shared/props/ISearchInputProps';
 
-export function SearchInput({ setSearch }: ISearchInputProps) {
+export function SearchInput({ setSearch, isDisabled }: ISearchInputProps) {
   const [value, setValue] = useState<string>('')
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export function SearchInput({ setSearch }: ISearchInputProps) {
 
 
   return (
-    <Container>
+    <Container disabled={isDisabled}>
       <IconContainer>
         <MagnifyingGlassIconContainer>
           <StyledMagnifyingGlassIcon />

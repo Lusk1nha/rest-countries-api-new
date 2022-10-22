@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Loading } from "../../components/Loading";
+import { Loading } from "../../components/Loadings/Loading";
+import { RenderSkeletonCards } from "../../components/Loadings/RenderSkeletonCards";
 import { NothingFound } from "../../components/NothingFound";
 import { RenderCountries } from "../../components/RenderCountries";
 import { Search } from "../../components/Search";
@@ -38,6 +39,7 @@ export function HomePage() {
     if(countries != null) {
       const filteredCountries = filteringCountries(countries);
       const sortedCountries = sortCountries(filteredCountries);
+
       setFilteredCountries(sortedCountries);
     };
   }, [search, region]);
@@ -48,7 +50,9 @@ export function HomePage() {
       if (region != null && region != 'All') {
         const regionToUpper = region.toUpperCase();
 
-        if (country.region.toUpperCase() == regionToUpper) return true
+        if (country.region.toUpperCase() == regionToUpper) 
+          return true
+        
         return false
       };
 
@@ -60,13 +64,16 @@ export function HomePage() {
       if (search != null) {
         const searchToUpper = search.toUpperCase();
 
-        if (country.name.common.toUpperCase().includes(searchToUpper)) return true;
-        if (country.name.official.toUpperCase().includes(searchToUpper)) return true;
+        if (country.name.common.toUpperCase().includes(searchToUpper)) 
+          return true;
 
-        return false
+        if (country.name.official.toUpperCase().includes(searchToUpper)) 
+          return true;
+
+        return false;
       };
 
-      return true
+      return true;
     });
 
     return filterBySearch;
@@ -78,32 +85,26 @@ export function HomePage() {
 
   const RenderContent = () => {
     if (isLoading) {
-      return (
-        <LoadingContainer>
-          <Loading width="100px" height="100px" label="Loading..." />
-        </LoadingContainer>
-      );
+      return <RenderSkeletonCards totalCards={8} />
     };
 
     if (filteredCountries != null && filteredCountries.length > 0) {
-      return (
-        <RenderCountries countries={filteredCountries} />
-      )
-    } 
+      return <RenderCountries countries={filteredCountries} isLoading={isLoading} totalCards={16} />
+    };
     
     if (filteredCountries != null && filteredCountries.length == 0) {
       return (
         <NothingFoundContainer>
           <NothingFound text="No country found" />
         </NothingFoundContainer>
-      )
-    }
+      );
+    };
   };
 
   return (
     <Container>
       <Center>
-        <Search setSearch={setSearch} setRegion={setRegion} />
+        <Search setSearch={setSearch} setRegion={setRegion} isDisabled={isLoading} />
         {RenderContent()}
       </Center>
     </Container>

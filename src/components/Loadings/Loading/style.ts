@@ -1,9 +1,11 @@
 import styled, { keyframes } from "styled-components";
+import { SpinnerAnimation } from "../../../styles/animations";
 
 interface IStyledSpinnerProps {
   w: string;
   h: string;
-}
+};
+
 
 export const Container = styled.section`
   width: auto;
@@ -15,14 +17,6 @@ export const Container = styled.section`
   justify-content: flex-start;
 `;
 
-const SpinnerAnimation = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-`;
 
 export const Spinner = styled.div<IStyledSpinnerProps>`
   width: 40px;

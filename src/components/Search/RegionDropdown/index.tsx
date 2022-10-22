@@ -12,13 +12,13 @@ const DEFAULT_OPTIONS: IDropdownOptionsProps[] = [
   { value: 'Oceania', text: 'Oceania' },
 ]
 
-export function RegionDropdown({ setRegion }: IRegionDropdownProps) {
+export function RegionDropdown({ setRegion, isDisabled }: IRegionDropdownProps) {
   const handleRegionChange = (value: string | null) => {
     setRegion(value);
   };
 
   return (
-    <Container>
+    <Container disabled={isDisabled}>
       <Dropdown options={DEFAULT_OPTIONS} placeholder="Filter by Region" storeFunction={handleRegionChange} />
     </Container>
   );

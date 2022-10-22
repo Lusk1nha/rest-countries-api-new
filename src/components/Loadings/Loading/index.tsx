@@ -1,4 +1,4 @@
-import { ILoadingProps } from "../../shared/props/ILoadingProps";
+import { ILoadingProps } from "../../../shared/props/ILoadingProps";
 import { Container, Spinner, Label } from "./style";
 
 export function Loading({ width, height, label }: ILoadingProps) {
