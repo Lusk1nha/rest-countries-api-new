@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Fragment, useEffect, useState } from "react";
 
-function App() {
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import styled from "styled-components";
+
+import { Navbar } from "./components/Navbar";
+
+import GlobalStyles from "./styles/globalStyles";
+import { ThemeContextProvider } from "./contexts/theme/ThemeContextProvider";
+import { HomePage } from "./pages/HomePage";
+import { Detail } from "./pages/Detail";
+
+const StyledApp = styled.div`
+  background: ${props => props.theme.colors.bgColor};
+  width: 100%;
+  
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+`;
+
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+      <ThemeContextProvider>
+        <GlobalStyles />
+
+        <StyledApp>
+          <Navbar />
+          
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" index element={<HomePage />} />
+              <Route path="detail" element={<Detail />} />
+            </Routes>
+          </BrowserRouter>
+        </StyledApp>
+      </ThemeContextProvider>
+    </Fragment>
   );
 }
-
-export default App;
