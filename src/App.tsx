@@ -1,23 +1,14 @@
-import { Fragment, useEffect, useState } from "react";
-
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import styled from "styled-components";
+import { Fragment } from "react";
+import { Routes, Route } from "react-router-dom";
+import { ThemeContextProvider } from "./contexts/theme/ThemeContextProvider";
 
 import { Navbar } from "./components/Navbar";
+import { HomePage } from "./pages/HomePage";
+import { Details } from "./pages/Details";
 
 import GlobalStyles from "./styles/globalStyles";
-import { ThemeContextProvider } from "./contexts/theme/ThemeContextProvider";
-import { HomePage } from "./pages/HomePage";
-import { Detail } from "./pages/Detail";
-
-const StyledApp = styled.div`
-  background: ${props => props.theme.colors.bgColor};
-  width: 100%;
-  
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-`;
+import { StyledApp } from "./styles/app";
+import { NotFoundPage } from './pages/NotFound/index';
 
 export default function App() {
   return (
@@ -26,14 +17,12 @@ export default function App() {
         <GlobalStyles />
 
         <StyledApp>
-          <Navbar />
-          
-          <BrowserRouter>
+          <Navbar title="Where in the world?" />
             <Routes>
               <Route path="/" index element={<HomePage />} />
-              <Route path="detail" element={<Detail />} />
+              <Route path="details/:code" element={<Details />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
-          </BrowserRouter>
         </StyledApp>
       </ThemeContextProvider>
     </Fragment>

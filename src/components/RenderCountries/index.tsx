@@ -2,19 +2,14 @@ import { IRenderCountriesProps } from "../../shared/props/IRenderCountriesProps"
 import { Card } from "../Card";
 import { Container } from "./style";
 
-export function RenderCountries({ countries, isLoading, totalCards }: IRenderCountriesProps) {
-  const renderCountries = () => {
-    return countries.map((country, id) => {
-      return (
-        <Card key={id} {...country} />
-      );
-    });
-  };
-    
-  console.log(countries, isLoading, totalCards)
+export function RenderCountries({ countries }: IRenderCountriesProps) {
   return (
     <Container>
-      {renderCountries()}
+      {countries.map(country => {
+        return (
+          <Card key={country.cca3} {...country} />
+        );
+      })}
     </Container>
   )
 };

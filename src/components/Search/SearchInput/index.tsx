@@ -10,16 +10,14 @@ export function SearchInput({ setSearch, isDisabled }: ISearchInputProps) {
   }, [value]);
 
   /**
-   * Method to handle search input change.
+   * Handle search input change.
    * @param event Input event
    */
   const handleSearchChange = (event: FormEvent<HTMLInputElement>) => {
     const text: string = event.currentTarget.value;
 
-    if(text != value) {
-      setValue(
-        text
-      );
+    if (text != value) {
+      setValue(text);
     };
   };
 
