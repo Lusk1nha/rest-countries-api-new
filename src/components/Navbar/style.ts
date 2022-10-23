@@ -31,6 +31,8 @@ export const Title = styled.h2`
   font-family: ${props => props.theme.fonts.heading};
   text-align: center;
 
+  transition: all 100ms linear;
+
   @media screen and (min-width: 900px) {
     font-size: 1.5rem;
   }

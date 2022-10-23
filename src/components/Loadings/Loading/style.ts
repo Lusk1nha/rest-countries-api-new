@@ -6,7 +6,6 @@ interface IStyledSpinnerProps {
   h: string;
 };
 
-
 export const Container = styled.section`
   width: auto;
   height: auto;
@@ -16,7 +15,6 @@ export const Container = styled.section`
   align-items: center;
   justify-content: flex-start;
 `;
-
 
 export const Spinner = styled.div<IStyledSpinnerProps>`
   width: 40px;

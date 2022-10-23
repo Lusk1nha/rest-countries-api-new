@@ -23,6 +23,10 @@ export const Container = styled.article`
 
   cursor: pointer;
 
+  &:hover {
+    transform: scale(1.1);
+  }
+
   @media screen and (min-width: 900px) {
     justify-self: flex-start;
   }

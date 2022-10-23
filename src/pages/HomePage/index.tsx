@@ -1,58 +1,78 @@
-import { useEffect, useState } from "react";
-import { Loading } from "../../components/Loadings/Loading";
+import { useEffect, useMemo, useState } from "react";
+
 import { RenderSkeletonCards } from "../../components/Loadings/RenderSkeletonCards";
 import { NothingFound } from "../../components/NothingFound";
 import { RenderCountries } from "../../components/RenderCountries";
 import { Search } from "../../components/Search";
-import { ICountry } from "../../shared/props/ICountriesProps";
+import { Container, Center, NothingFoundContainer } from "./style";
+
 import { CountriesRepo } from "../../shared/repositories/CountriesRepo";
-import { Container, Center, LoadingContainer, NothingFoundContainer } from "./style";
+
+import { ICountry } from "../../shared/props/ICountriesProps";
 
 export function HomePage() {
   const [countries, setCountries] = useState<ICountry[] | null>(null);
-  const [filteredCountries, setFilteredCountries] = useState<ICountry[] | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
   const [search, setSearch] = useState<string | null>(null);
   const [region, setRegion] = useState<string | null>(null);
 
-  const [isLoading, setIsLoading] = useState(true);
+  const filteredCountries = useMemo(() => {
+    if (!search && !region)
+      return countries;
+
+    return filterCountries(countries);
+  }, [search, region, countries]);
+
   const countriesRepo = new CountriesRepo();
 
-
   useEffect(() => {
-    const getData = async () => {
+    const getCountriesData = async () => {
       const allCountries = await countriesRepo.getAll();
       const sortedCountries = await sortCountries(allCountries);
 
       setCountries(sortedCountries);
-      setFilteredCountries(sortedCountries);
 
       setTimeout(() => {
         setIsLoading(false);
-      }, 1000);
+      }, 500);
     };
 
-    getData();
+    getCountriesData()
+      .catch(error => {
+        console.error(error)
+      });
   }, []);
 
+  /**
+   * Handle the countries filtering and sorting.
+   * @param countries Array with the countries.
+   * @returns  Return the countries filtering and sorting.
+   */
+  function filterCountries(countries?: ICountry[] | null): ICountry[] {
+    if (countries != null) {
+      const filterCountriesByText = filteringCountries(countries);
+      const sortFoundCountries = sortCountries(filterCountriesByText);
 
-  useEffect(() => {
-    if(countries != null) {
-      const filteredCountries = filteringCountries(countries);
-      const sortedCountries = sortCountries(filteredCountries);
-
-      setFilteredCountries(sortedCountries);
+      return sortFoundCountries
     };
-  }, [search, region]);
 
+    return [];
+  };
 
-  const filteringCountries = (countries: ICountry[]) => {
+  /**
+   * Handle countries by filtering per Region or Search text by user.
+   * @param countries Array with the countries.
+   * @returns Return the countries filtered by Region and Search.
+   */
+  function filteringCountries(countries: ICountry[]) {
     const filterByRegion = countries.filter(country => {
       if (region != null && region != 'All') {
         const regionToUpper = region.toUpperCase();
 
-        if (country.region.toUpperCase() == regionToUpper) 
+        if (country.region.toUpperCase() == regionToUpper)
           return true
-        
+
         return false
       };
 
@@ -64,10 +84,7 @@ export function HomePage() {
       if (search != null) {
         const searchToUpper = search.toUpperCase();
 
-        if (country.name.common.toUpperCase().includes(searchToUpper)) 
-          return true;
-
-        if (country.name.official.toUpperCase().includes(searchToUpper)) 
+        if (country.name.common.toUpperCase().includes(searchToUpper))
           return true;
 
         return false;
@@ -79,10 +96,21 @@ export function HomePage() {
     return filterBySearch;
   };
 
+  /**
+   * Sort the countries by their names in ascendent order.
+   * @param countries Array with the countries.
+   * @returns Return the sort 
+   */
+  function sortCountries(countries: ICountry[]) {
+    return countries
+      .sort((a, b) => a.name.common.localeCompare(b.name.common));
+  };
 
-  const sortCountries = (countries: ICountry[]) => countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
 
-
+  /**
+   * Render the component based in states.
+   * @returns Return the component.
+   */
   const RenderContent = () => {
     if (isLoading) {
       return <RenderSkeletonCards totalCards={8} />
@@ -91,7 +119,7 @@ export function HomePage() {
     if (filteredCountries != null && filteredCountries.length > 0) {
       return <RenderCountries countries={filteredCountries} isLoading={isLoading} totalCards={16} />
     };
-    
+
     if (filteredCountries != null && filteredCountries.length == 0) {
       return (
         <NothingFoundContainer>
@@ -105,6 +133,7 @@ export function HomePage() {
     <Container>
       <Center>
         <Search setSearch={setSearch} setRegion={setRegion} isDisabled={isLoading} />
+
         {RenderContent()}
       </Center>
     </Container>
