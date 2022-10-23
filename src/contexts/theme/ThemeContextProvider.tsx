@@ -28,7 +28,7 @@ export function ThemeContextProvider({ children }: IThemeContextProvider) {
   const handleThemeChange = useCallback((value?: string) => {
     setTheme(
       value ??
-      theme === 'light'
+        theme === 'light'
         ? 'dark'
         : 'light'
     )

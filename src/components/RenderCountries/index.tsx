@@ -3,17 +3,13 @@ import { Card } from "../Card";
 import { Container } from "./style";
 
 export function RenderCountries({ countries }: IRenderCountriesProps) {
-  const renderCountries = () => {
-    return countries.map((country, id) => {
-      return (
-        <Card key={id} {...country} />
-      );
-    });
-  };
-
   return (
     <Container>
-      {renderCountries()}
+      {countries.map(country => {
+        return (
+          <Card key={country.cca3} {...country} />
+        );
+      })}
     </Container>
   )
 };

@@ -13,7 +13,7 @@ export function BorderButton({ name }: IBorderButtonProps) {
   };
 
   return (
-    <Button onClick={handleClick} type="button">
+    <Button onClick={handleClick} type="button" aria-label="Button to go border country"> 
       {name}
     </Button>
   )

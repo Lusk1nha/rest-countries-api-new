@@ -1,11 +1,12 @@
 import { ButtonThemeChanger } from "../Buttons/ThemeChanger";
 import { Container, Content, Title } from "./style";
+import { INavbarProps } from './../../shared/props/INavbarProps';
 
-export function Navbar() {
+export function Navbar({ title }: INavbarProps) {
   return (
     <Container>
       <Content>
-        <Title>Where in the world?</Title>
+        <Title>{title}</Title>
         <ButtonThemeChanger />
       </Content>
     </Container>

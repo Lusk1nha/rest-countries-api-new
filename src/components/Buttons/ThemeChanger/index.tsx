@@ -9,7 +9,7 @@ export function ButtonThemeChanger() {
   const handleButtonClick = () => themeContext?.handleThemeChange();
 
   return (
-    <Button type="button" onClick={handleButtonClick}>
+    <Button type="button" onClick={handleButtonClick} title="Click here to change page theme color" aria-label="Button to change theme color">
       {themeContext?.theme === 'light'
         ? (
           <MoonIconContainer>

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const FlagContainer = styled.div`
+  max-width: 550px;
   width: 100%;
   height: 230px;
 
@@ -8,7 +9,14 @@ export const FlagContainer = styled.div`
 
   overflow: hidden;
 
-  margin-bottom: 2.75rem;
+  @media screen and (min-width: 500px) {
+    height: 250px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    height: 400px;
+    margin-bottom: 0;
+  }
 `;
 
 export const FlagImage = styled.img`
@@ -28,7 +36,16 @@ export const Informations = styled.div`
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+
+  padding: 2rem 0;
+
+  @media screen and (min-width: 1200px) {
+    height: 400px;
+    margin-bottom: 0;
+    justify-content: center;
+
+    margin-left: 2rem;
+  }
 `;
 
 export const Name = styled.h2`
@@ -37,6 +54,22 @@ export const Name = styled.h2`
   font-weight: 800;
 
   margin-bottom: 2rem;
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 500px) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const SubInformations = styled.article`
@@ -64,7 +97,10 @@ export const BorderContainer = styled.section`
   display: flex;
   flex-direction: column;
 
-  flex-grow: 1;
+  @media screen and (min-width: 1200px) {
+    max-width: unset;
+    flex-direction: row;
+  }
 `;
 
 export const BorderLabel = styled.h4`
@@ -72,6 +108,11 @@ export const BorderLabel = styled.h4`
   font-weight: 600;
 
   margin-bottom: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
 `;
 
 export const BorderContent = styled.div`
@@ -79,6 +120,15 @@ export const BorderContent = styled.div`
 
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: auto auto auto;
   gap: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    grid-template-columns: auto auto auto auto;
+  }
+`;
+
+export const NoBorderFoundContent = styled.h4`
+  color: ${props => props.theme.colors.textColor};
+  font-weight: 600;
 `;

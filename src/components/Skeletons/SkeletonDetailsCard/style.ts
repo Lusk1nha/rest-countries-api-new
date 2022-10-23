@@ -9,6 +9,11 @@ export const FlagContainer = styled.div`
   overflow: hidden;
 
   margin-bottom: 2.75rem;
+
+  @media screen and (min-width: 1200px) {
+    height: 400px;
+    margin-bottom: 0;
+  }
 `;
 
 
@@ -16,6 +21,30 @@ export const Informations = styled.article`
   width: 100%;
 
   flex-grow: 1;
+
+  @media screen and (min-width: 1200px) {
+    height: 400px;
+    margin-bottom: 0;
+    justify-content: center;
+
+    margin-left: 2rem;
+  }
+`;
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 2rem;
+
+  @media screen and (min-width: 500px) {
+    flex-direction: row;
+  }
+
+  @media screen and (min-width: 1200px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 export const SubInformations = styled.article`
@@ -39,6 +68,11 @@ export const BorderContainer = styled.section`
 
   display: flex;
   flex-direction: column;
+
+  @media screen and (min-width: 1200px) {
+    max-width: unset;
+    flex-direction: row;
+  }
 `;
 
 
@@ -49,4 +83,8 @@ export const BorderContent = styled.div`
 
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
+
+  @media screen and (min-width: 1200px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
 `;

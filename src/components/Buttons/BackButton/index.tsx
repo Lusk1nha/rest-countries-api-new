@@ -9,7 +9,7 @@ export function BackButton() {
   };
 
   return (
-    <Button onClick={handleClick} type="button" title="Click here to go for Home Page...">
+    <Button onClick={handleClick} type="button" title="Click here to go for Home Page" aria-label="Button to go back home page">
       <ArrowIconContainer>
         <StyledArrowIcon />
       </ArrowIconContainer>

@@ -1,43 +1,26 @@
-import { FlagContainer, FlagImage, Informations, Name, SubInformations, Label, InformationLabel, BorderContainer, BorderLabel, BorderContent } from "./style";
+import { FlagContainer, FlagImage, Informations, Name, SubInformations, Label, InformationLabel, BorderContainer, BorderLabel, BorderContent, Wrapper, NoBorderFoundContent } from "./style";
 import { BorderButton } from './../Buttons/BorderButton/index';
 import { Fragment } from 'react';
 import { IDetailsCardProps } from "../../shared/props/IDetailsCardProps";
+import { Utils } from './../../utils/Utils';
 
 export function DetailsCard({ data }: IDetailsCardProps) {
+  const { addCommasInPopulation, getValues, getCurrencies } = new Utils();
+
   /**
-   * Render borders buttons
+   * Render all borders buttons
    * @returns Component of the border buttons
    */
   const renderBorders = () => {
-    if(!data?.borders?.length) {
-      return 'No borders'
+    if (!data?.borders?.length) {
+      return <NoBorderFoundContent>No borders countries found</NoBorderFoundContent>
     };
 
     return data.borders.map((name, index) => {
       return <BorderButton key={index} name={name} />
-    }
-  )};
+    })
+  };
 
-  /**
-   * Return all the values of an Object
-   * @param obj Generic Object
-   * @returns Return the values
-   */
-  const getValues = (obj: object) => Object.values(obj);
-
-  /**
-   * Return all currencies used in the country
-   * @param array Generic array
-   * @returns {string} Return currencies
-   */
-  const currencies = (array: any) => array.map((el: any) => el?.name);
-
-  /**
-   * Return the population formated with commas - https://cutt.ly/eB6B445
-   * @param total Total of population
-   * @returns Return the population with commas
-   */
-  const addCommasInPopulation = (total: number) => total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
   return (
     <Fragment>
@@ -48,49 +31,65 @@ export function DetailsCard({ data }: IDetailsCardProps) {
       <Informations>
         <Name>{data.name.common}</Name>
 
-        <SubInformations>
-          <Label>
-            <InformationLabel>Native Name:</InformationLabel>
-            {data.name.common ?? 'Not Found'}
-          </Label>
+        <Wrapper>
+          <SubInformations>
+            <Label>
+              <InformationLabel>Native Name:</InformationLabel>
+              {data.name.common ?? 'Not Found'}
+            </Label>
 
-          <Label>
-            <InformationLabel>Population:</InformationLabel>
-            {data.population != null ? addCommasInPopulation(data.population) : 'Not found'}
-          </Label>
+            <Label>
+              <InformationLabel>Population:</InformationLabel>
+              {
+                data.population != null
+                  ? addCommasInPopulation(data.population)
+                  : 'Not found'
+              }
+            </Label>
 
-          <Label>
-            <InformationLabel>Region:</InformationLabel>
-            {data.region}
-          </Label>
+            <Label>
+              <InformationLabel>Region:</InformationLabel>
+              {data.region}
+            </Label>
 
-          <Label>
-            <InformationLabel>Sub Region:</InformationLabel>
-            {data.subregion}
-          </Label>
+            <Label>
+              <InformationLabel>Sub Region:</InformationLabel>
+              {data.subregion}
+            </Label>
 
-          <Label>
-            <InformationLabel>Capital</InformationLabel>
-            {data.capital}
-          </Label>
-        </SubInformations>
+            <Label>
+              <InformationLabel>Capital</InformationLabel>
+              {data.capital}
+            </Label>
+          </SubInformations>
 
-        <SubInformations>
-          <Label>
-            <InformationLabel>Top Level Domain:</InformationLabel>
-            {data.tld != null ? data.tld.join(', ') : 'Nothing found' }
-          </Label>
+          <SubInformations>
+            <Label>
+              <InformationLabel>Top Level Domain:</InformationLabel>
+              {
+                data.tld != null
+                  ? data.tld.join(', ')
+                  : 'Nothing found'
+              }
+            </Label>
 
-          <Label>
-            <InformationLabel>Currencies:</InformationLabel>
-            {currencies(getValues(data.currencies)).join(', ')}
-          </Label>
+            <Label>
+              <InformationLabel>Currencies:</InformationLabel>
+              {
+                getCurrencies(getValues(data.currencies))
+                  .join(', ')
+              }
+            </Label>
 
-          <Label>
-            <InformationLabel>Languages</InformationLabel>
-            {getValues(data.languages).join(', ')}
-          </Label>
-        </SubInformations>
+            <Label>
+              <InformationLabel>Languages</InformationLabel>
+              {
+                getValues(data.languages)
+                  .join(', ')
+              }
+            </Label>
+          </SubInformations>
+        </Wrapper>
 
         <BorderContainer>
           <BorderLabel>Border Countries:</BorderLabel>

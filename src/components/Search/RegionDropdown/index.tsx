@@ -10,7 +10,7 @@ const DEFAULT_OPTIONS: IDropdownOptionsProps[] = [
   { value: 'Asia', text: 'Asia' },
   { value: 'Europe', text: 'Europe' },
   { value: 'Oceania', text: 'Oceania' },
-]
+];
 
 export function RegionDropdown({ setRegion, isDisabled }: IRegionDropdownProps) {
   const handleRegionChange = (value: string | null) => {

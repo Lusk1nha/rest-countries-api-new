@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-import { FlagContainer, Informations, SubInformations, Label, BorderContainer, BorderContent } from "./style";
+import { FlagContainer, Informations, Wrapper, SubInformations, Label, BorderContainer, BorderContent } from "./style";
 
 export function SkeletonDetailsCard() {
   return (
@@ -12,51 +12,49 @@ export function SkeletonDetailsCard() {
       </FlagContainer>
 
       <Informations>
-        <Skeleton width="40%" height="30px" style={{
-          marginBottom: '2rem'
-        }} />
+        <Skeleton width="40%" height="30px" style={{ marginBottom: '2rem' }} />
 
-        <SubInformations>
-          <Label>
-            <Skeleton width="45%" height={20}/>
-          </Label>
-        
-          <Label>
-            <Skeleton width="50%" height={20}/>
-          </Label>
-          
-          <Label>
-            <Skeleton width="35%" height={20}/>
-          </Label>
+        <Wrapper>
+          <SubInformations>
+            <Label>
+              <Skeleton width="45%" height={20} />
+            </Label>
 
-          <Label>
-            <Skeleton width="45%" height={20}/>
-          </Label>
+            <Label>
+              <Skeleton width="50%" height={20} />
+            </Label>
 
-          <Label>
-            <Skeleton width="40%" height={20}/>
-          </Label>
+            <Label>
+              <Skeleton width="35%" height={20} />
+            </Label>
 
-        </SubInformations>
+            <Label>
+              <Skeleton width="45%" height={20} />
+            </Label>
 
-        <SubInformations>
-          <Label>
-            <Skeleton width="50%" height={20}/>
-          </Label>
+            <Label>
+              <Skeleton width="40%" height={20} />
+            </Label>
 
-          <Label>
-            <Skeleton width="40%" height={20}/>
-          </Label>
+          </SubInformations>
 
-          <Label>
-            <Skeleton width="60%" height={20}/>
-          </Label>
-        </SubInformations>
+          <SubInformations>
+            <Label>
+              <Skeleton width="50%" height={20} />
+            </Label>
+
+            <Label>
+              <Skeleton width="40%" height={20} />
+            </Label>
+
+            <Label>
+              <Skeleton width="60%" height={20} />
+            </Label>
+          </SubInformations>
+        </Wrapper>
 
         <BorderContainer>
-          <Skeleton width={140} height={20} style={{
-            marginBottom: '1rem'
-          }} />
+          <Skeleton width={140} height={20} style={{ marginBottom: '1rem', marginRight: '1rem' }} />
 
           <BorderContent>
             <Skeleton width={104} height={30} style={{ justifySelf: 'center' }} />

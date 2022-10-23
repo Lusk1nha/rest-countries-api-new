@@ -62,3 +62,6 @@ export const Content = styled.section`
   }
 `;
 
+export const NotFoundMessage = styled.h2`
+  
+`;

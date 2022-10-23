@@ -8,27 +8,28 @@ import { DetailsCard } from "../../components/DetailsCard";
 import { SkeletonDetailsCard } from './../../components/Skeletons/SkeletonDetailsCard/index';
 
 export function Details() {
-  const { code } = useParams<{ code?: string }>();
+  const { code } = useParams<{ code: string }>();
   const [country, setCountry] = useState<ICountry | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   const countriesRepo = new CountriesRepo();
 
   useEffect(() => {
-    const getData = async () => {
-      if(code != null) {
+    const getCountryData = async () => {
+      if (code != null) {
         const country = await countriesRepo.getInfo(code);
-      
+
         setCountry(country[0]);
 
         setTimeout(() => {
           setIsLoading(false);
-        }, 1000);
+        }, 500);
       }
     };
 
     setIsLoading(true);
-    getData();
+    getCountryData()
+      .catch(error => console.error(error));
   }, [code]);
 
   return (
@@ -39,7 +40,11 @@ export function Details() {
         </BackButtonContainer>
 
         <Content>
-          { isLoading || country == null ? <SkeletonDetailsCard /> : <DetailsCard data={country} /> }
+          {
+            isLoading || country == null
+              ? <SkeletonDetailsCard />
+              : <DetailsCard data={country} />
+          }
         </Content>
       </Center>
     </Container>
