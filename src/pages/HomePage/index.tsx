@@ -18,11 +18,11 @@ export function HomePage() {
   const [region, setRegion] = useState<string | null>(null);
 
   const filteredCountries = useMemo(() => {
-    if (!search)
+    if (!search && !region)
       return countries;
 
     return filterCountries(countries);
-  }, [search, countries]);
+  }, [search, region, countries]);
 
   const countriesRepo = new CountriesRepo();
 
