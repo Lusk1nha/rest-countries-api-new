@@ -1,4 +1,4 @@
-# pong-game
+# Rest Countries API
 I made this Project using Front end Mentor.
 
 ## Result
